@@ -1,0 +1,26 @@
+.add .captioncont {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.captioncont .caption {
+  position: relative;
+  height: 300px;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rosybrown;
+}
+.caption span {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
