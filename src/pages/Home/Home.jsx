@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
 import { connect } from 'react-redux';
-import Card from '../../components/Card/Card';
 import {
   getCaptions,
   getTags,
@@ -9,6 +8,8 @@ import {
   getCaptionsWithManyTags
 } from '../../redux/actions/capCardActions';
 import AddCaptionWithTag from '../../components/AddCaptionWithTag/AddCaptionWithTag';
+import Search from '../../components/Search/Search';
+import CardContainer from '../../components/CardContainer/CardContainer';
 
 const Home = props => {
   const {
@@ -23,12 +24,18 @@ const Home = props => {
     // getCaptionsUnderTag(5);
     // getCaptionsWithManyTags();
   }, []);
+  const [searchEmpty, setSearchEmpty] = useState('');
+
+  const searchInputChange = value => {
+    setSearchEmpty(value);
+  };
 
   return (
     <div>
       <h1>Caption Cards</h1>
-      <AddCaptionWithTag />
-      {/* <div className='cardcontainer'>{Array(20).fill(<Card />)}</div> */}
+      <Search search={searchInputChange} />
+      {/* <AddCaptionWithTag /> */}
+      {searchEmpty.length < 1 && <CardContainer />}
     </div>
   );
 };
