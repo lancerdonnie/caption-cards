@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import capCardReducer from "./capCardReducer"
+import capCardReducer from './capCardReducer';
 const rootReducer = combineReducers({
-  capCardReducer
+  capCard: capCardReducer
 });
 
 export default rootReducer;

@@ -24,10 +24,14 @@ export const getTags = () => async dispatch => {
   dispatch({ type: 'GET_TAGS', payload: tags });
 };
 
-export const getCaptionsUnderTag = tagId => async dispatch => {
+export const getCaptionsUnderTag = tagName => async (dispatch, getStore) => {
+  const tagId = getStore().capCard.tags.find(tag => {
+    return tag.tag === tagName;
+  });
+  console.log(tagId, tagName);
   const res = (
     await axios.get(
-      `https://capcards-api.herokuapp.com/v1.0/api/caption/withTag?tagId=${tagId}`
+      `https://capcards-api.herokuapp.com/v1.0/api/caption/withTag?tagId=${tagId.id}`
     )
   ).data;
   const captionsUnderTag = res.data;
@@ -92,4 +96,10 @@ export const createCaptionWithTags = (caption, tags) => async dispatch => {
       tags
     }
   );
+};
+
+export const clearCaptionsUnderTag = () => {
+  return {
+    type: 'CLEAR_CAPTIONS_UNDER_TAG'
+  };
 };

@@ -19,12 +19,12 @@ const Home = props => {
     getCaptionsWithManyTags
   } = props;
   useEffect(() => {
-    // getCaptions();
-    // getTags();
+    getCaptions();
+    getTags();
     // getCaptionsUnderTag(5);
     // getCaptionsWithManyTags();
   }, []);
-  const [searchEmpty, setSearchEmpty] = useState('');
+  const [searchEmpty, setSearchEmpty] = useState(true);
 
   const searchInputChange = value => {
     setSearchEmpty(value);
@@ -35,7 +35,7 @@ const Home = props => {
       <h1>Caption Cards</h1>
       <Search search={searchInputChange} />
       {/* <AddCaptionWithTag /> */}
-      {searchEmpty.length < 1 && <CardContainer />}
+      {/* {searchEmpty && <CardContainer test />} */}
     </div>
   );
 };
