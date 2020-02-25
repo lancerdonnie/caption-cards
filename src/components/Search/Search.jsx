@@ -2,22 +2,15 @@ import React, { useState, useEffect } from 'react';
 import CardContainer from '../CardContainer/CardContainer';
 import { connect } from 'react-redux';
 import {
-  getCaptions,
-  getTags,
   getCaptionsUnderTag,
   clearCaptionsUnderTag
 } from '../../redux/actions/capCardActions';
 
 const Search = props => {
-  const {
-    getCaptions,
-    getTags,
-    getCaptionsUnderTag,
-    clearCaptionsUnderTag
-  } = props;
+  const { getCaptionsUnderTag, clearCaptionsUnderTag } = props;
   const [search, setSearch] = useState('');
+  const [searched, setSearched] = useState('');
   const [tag, setTag] = useState('');
-  const [data, setData] = useState([]);
 
   const handleChange = e => {
     setSearch(e.target.value);
@@ -27,12 +20,19 @@ const Search = props => {
     setTag(e.target.value);
   };
   const handleSubmit = e => {
+    setSearched(search);
     e.preventDefault();
-    if (tag === 'alltags') {
+    if (tag === 'alltags' || tag === '') {
       clearCaptionsUnderTag();
     } else {
       getCaptionsUnderTag(tag);
     }
+  };
+  const handleClear = e => {
+    e.preventDefault();
+    setSearch('');
+    setSearched('');
+    clearCaptionsUnderTag();
   };
   return (
     <div>
@@ -46,11 +46,12 @@ const Search = props => {
         </select>
         <button type='submit'>Search</button>
       </form>
+      <button onClick={handleClear}>Reset</button>
 
       <CardContainer
         captionsUnderTag={props.captionsUnderTag}
         captions={props.captions}
-        tag={tag}
+        searched={searched}
         search={search}
       />
     </div>
@@ -65,8 +66,6 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    getCaptions: () => dispatch(getCaptions()),
-    getTags: () => dispatch(getTags()),
     getCaptionsUnderTag: tag => dispatch(getCaptionsUnderTag(tag)),
     clearCaptionsUnderTag: () => dispatch(clearCaptionsUnderTag())
   };

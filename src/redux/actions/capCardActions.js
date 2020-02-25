@@ -38,10 +38,10 @@ export const getCaptionsUnderTag = tagName => async (dispatch, getStore) => {
   dispatch({ type: 'GET_CAPTIONS_UNDER_TAG', payload: captionsUnderTag });
 };
 
-export const getCaptionsWithManyTags = () => async dispatch => {
+export const getCaptionsWithManyTags = tags => async dispatch => {
   const res = (
     await axios.post('https://capcards-api.herokuapp.com/v1.0/api/tag/array', {
-      tags: ['food', 'fish', 'health']
+      tags
     })
   ).data;
   const captionsWithManyTags = res.data.captions;
