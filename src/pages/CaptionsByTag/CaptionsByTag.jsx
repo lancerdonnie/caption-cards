@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './CaptionsByTag.css';
 import { connect } from 'react-redux';
 import { getCaptionsUnderTag } from '../../redux/actions/capCardActions';
+import Card from '../../components/Card/Card';
 const CaptionsByTag = props => {
   return (
     <div className='captionsbytag'>
+      <Link to='/'>All captions</Link>
+
       <div>
         {props.tags.map(tag => {
           return (
@@ -21,7 +25,7 @@ const CaptionsByTag = props => {
       <div>
         {props.captionsUnderTag &&
           props.captionsUnderTag.captions.map(caption => {
-            return <div>{caption}</div>;
+            return <Card caption={caption} />;
           })}
       </div>
     </div>

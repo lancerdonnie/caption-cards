@@ -1,7 +1,7 @@
-.add .captioncont {
+.captioncont {
   height: 100vh;
   width: 100vw;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.7);
@@ -12,15 +12,30 @@
 }
 .captioncont .caption {
   position: relative;
-  height: 300px;
   width: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: rosybrown;
+  background-color: #c7abde;
+  border-radius: 0.7rem;
+  padding: 1rem;
+}
+.captioncont .caption > * {
+  margin-bottom: 15px;
 }
 .caption span {
   position: absolute;
   top: 10px;
   right: 10px;
+  cursor: pointer;
+}
+.caption input {
+  padding: 0.5rem;
+}
+.caption button {
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: #7227b0;
+  border: none;
+  color: white;
 }

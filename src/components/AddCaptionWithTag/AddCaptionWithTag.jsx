@@ -15,14 +15,14 @@ const AddCaptionWithTag = () => {
   };
 
   return (
-    <div className='add'>
+    <>
       <div onClick={handleShowAddCaption}>Add Caption</div>
       <div onClick={handleShowAddTag}>Add Tag</div>
       {showAddCaption && (
         <AddCaption handleShowAddCaption={handleShowAddCaption} />
       )}
       {showAddTag && <AddTag handleShowAddTag={handleShowAddTag} />}
-    </div>
+    </>
   );
 };
 

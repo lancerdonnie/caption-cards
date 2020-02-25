@@ -4,8 +4,9 @@ import Card from '../Card/Card';
 const CardContainer = props => {
   return (
     <div className='cardcontainer'>
-      {props.captions.map(caption => {
-        return <div>{caption.caption}</div>;
+      {props.captions.map((caption, i) => {
+        if (caption.caption.includes(props.search))
+          return <Card key={i} caption={caption.caption} />;
       })}
     </div>
   );

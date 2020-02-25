@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './Home.css';
 import { connect } from 'react-redux';
-import AddCaptionWithTag from '../../components/AddCaptionWithTag/AddCaptionWithTag';
-import Search from '../../components/Search/Search';
 import CardContainer from '../../components/CardContainer/CardContainer';
 import { getCaptionsWithManyTags } from '../../redux/actions/capCardActions';
+import AddCaptionWithTag from '../../components/AddCaptionWithTag/AddCaptionWithTag';
+import Button from '../../components/Button/Button';
 
 const Home = props => {
   const [data, setData] = useState([]);
@@ -23,28 +24,54 @@ const Home = props => {
     const newData = tags.filter(tag => {
       return tag.id !== id;
     });
-    setTags(newData);
-    const getTags = [];
-    tags.forEach(tag => {
-      if (tag.id !== id) getTags.push(tag.tag);
+    const isTag = tags.find(tag => {
+      return tag.id === id;
     });
-
-    props.getCaptionsWithManyTags([...getTags]);
+    if (isTag) {
+      setTags(newData);
+      const getTags = [];
+      tags.forEach(tag => {
+        if (tag.id !== id) getTags.push(tag.tag);
+      });
+      props.getCaptionsWithManyTags([...getTags]);
+    } else {
+      const findTag = props.tags.find(tag => {
+        return tag.id === id;
+      });
+      setTags([...newData, findTag]);
+      const getTags = [];
+      [...newData, findTag].forEach(tag => {
+        getTags.push(tag.tag);
+      });
+      props.getCaptionsWithManyTags([...getTags]);
+    }
   };
   const handleSearch = e => {
     setSearch(e.target.value);
   };
   return (
     <div>
-      <h1>Caption Cards</h1>
-      <input onChange={handleSearch} value={search} type='text' />
+      <div className='head'>
+        <h1>Caption Cards</h1>
+      </div>
+      {/* <Link to='/cbt'>Filter Caption</Link> */}
+      <div className='bar'>
+        <input
+          onChange={handleSearch}
+          value={search}
+          type='text'
+          placeholder='Search'
+        />
+        <AddCaptionWithTag />
+      </div>
 
-      {/* <Search search={searchInputChange} /> */}
-      {/* <AddCaptionWithTag /> */}
-      {/* {searchEmpty && <CardContainer test />} */}
-      <div>
-        {tags.map(tag => {
-          return <div onClick={() => handleClick(tag.id)}>{tag.tag}</div>;
+      <div className='buttons'>
+        {props.tags.map(tag => {
+          return (
+            <div key={tag.id} onClick={() => handleClick(tag.id)}>
+              <Button data={tag.tag} />
+            </div>
+          );
         })}
       </div>
       <br />

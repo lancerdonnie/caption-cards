@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 
 const AddCaption = props => {
   const [caption, setCaption] = useState('');
@@ -29,32 +30,48 @@ const AddCaption = props => {
     <div className='captioncont'>
       <form onSubmit={handleSubmit} className='caption'>
         <p>Add Caption</p>
-        <input onChange={handleCaptionInput} value={caption} type='text' />
-        <button type='submit'>Add</button>
-        <span onClick={props.handleShowAddCaption}>X</span>
-        <label htmlFor='addtag'>Add to Tags</label>
         <input
-          onChange={() => setShowTag(!showTag)}
-          type='checkbox'
-          name='addtag'
-          checked={showTag}
+          onChange={handleCaptionInput}
+          value={caption}
+          type='text'
+          placeholder='type a caption'
         />
+        <button type='submit'>Add</button>
+        <span onClick={props.handleShowAddCaption}>
+          <i className='fas fa-times' />
+        </span>
+        <div>
+          <input
+            onChange={() => setShowTag(!showTag)}
+            type='checkbox'
+            name='addtag'
+            checked={showTag}
+          />
+          Add To Tags
+        </div>
         {showTag && (
-          //tag must exist in db
-          <>
-            <div>
-              <input onChange={handleAddTags} type='checkbox' value='option1' />
-              option1
-            </div>
-            <div>
-              <input onChange={handleAddTags} type='checkbox' value='option2' />
-              option2
-            </div>
-          </>
+          <div>
+            {props.tags.map(tag => {
+              return (
+                <div>
+                  <input
+                    onChange={handleAddTags}
+                    type='checkbox'
+                    value={tag.tag}
+                  />
+                  {tag.tag}
+                </div>
+              );
+            })}
+          </div>
         )}
       </form>
     </div>
   );
 };
-
-export default AddCaption;
+const mapStateToProps = state => {
+  return {
+    tags: state.capCard.tags
+  };
+};
+export default connect(mapStateToProps)(AddCaption);
