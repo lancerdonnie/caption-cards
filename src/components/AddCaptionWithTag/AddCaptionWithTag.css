@@ -28,9 +28,11 @@
   top: 10px;
   right: 10px;
   cursor: pointer;
+  color: white;
 }
 .caption input {
   padding: 0.5rem;
+  cursor: pointer;
 }
 .caption button {
   cursor: pointer;

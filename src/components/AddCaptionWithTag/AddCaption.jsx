@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import {
+  saveCaption,
+  createCaptionWithTags
+} from '../../redux/actions/capCardActions';
 
 const AddCaption = props => {
   const [caption, setCaption] = useState('');
@@ -8,6 +12,15 @@ const AddCaption = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (showTag) {
+      if (captionTags.length < 1) {
+        props.saveCaption(caption);
+      } else {
+        props.createCaptionWithTags(caption, captionTags);
+      }
+    } else {
+      props.saveCaption(caption);
+    }
   };
   const handleCaptionInput = e => {
     setCaption(e.target.value);
@@ -18,7 +31,7 @@ const AddCaption = props => {
       return tag === e.target.value;
     });
     if (!isTag) {
-      setCaptiontags([...captionTags, isTag]);
+      setCaptiontags([...captionTags, e.target.value]);
     } else {
       const RemoveTag = captionTags.filter(tag => {
         return tag !== e.target.value;
@@ -47,13 +60,13 @@ const AddCaption = props => {
             name='addtag'
             checked={showTag}
           />
-          Add To Tags
+          Add Tags
         </div>
         {showTag && (
           <div>
             {props.tags.map(tag => {
               return (
-                <div>
+                <div key={tag.id}>
                   <input
                     onChange={handleAddTags}
                     type='checkbox'
@@ -74,4 +87,11 @@ const mapStateToProps = state => {
     tags: state.capCard.tags
   };
 };
-export default connect(mapStateToProps)(AddCaption);
+const mapDispatchToProps = dispatch => {
+  return {
+    saveCaption: caption => dispatch(saveCaption(caption)),
+    createCaptionWithTags: (caption, tags) =>
+      dispatch(createCaptionWithTags(caption, tags))
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(AddCaption);

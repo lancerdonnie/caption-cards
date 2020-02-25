@@ -48,14 +48,3 @@ h1 {
   flex-wrap: wrap;
   justify-content: center;
 }
-
-.dropdown {
-  height: 50px;
-  width: 150px;
-  border: 1px solid black;
-  cursor: pointer;
-}
-
-.select ul {
-  cursor: pointer;
-}

@@ -6,7 +6,7 @@ const CardContainer = props => {
     <div className='cardcontainer'>
       {props.captions.map((caption, i) => {
         if (caption.caption.includes(props.search))
-          return <Card key={i} caption={caption.caption} />;
+          return <Card key={i} caption={caption} />;
       })}
     </div>
   );

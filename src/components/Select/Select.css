@@ -1,0 +1,32 @@
+.addselect {
+  margin-top: 10px;
+  font-size: 0.7rem;
+}
+
+.dropdown {
+  cursor: pointer;
+  color: white;
+  background-color: #a770d5;
+  border-radius: 10px;
+  padding: 0.2rem 0.5rem;
+}
+
+.select {
+  border: 1px #7227b0 solid;
+  border-radius: 10px;
+  padding: 0.2rem 0.5rem;
+  position: absolute;
+  background-color: white;
+  cursor: pointer;
+}
+.select > div:hover {
+  background-color: #7227b0;
+  color: white;
+  border-radius: 3px;
+}
+
+.divider {
+  /* display: inline-block; */
+  margin: 0 7px;
+  border-left: 2px solid white;
+}

@@ -69,6 +69,7 @@ export const saveCaption = caption => async dispatch => {
 };
 export const saveTag = tag => async dispatch => {
   //tag will save twice
+
   const res = await axios.post(
     'https://capcards-api.herokuapp.com/v1.0/api/tag/',
     {

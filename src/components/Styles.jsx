@@ -12,14 +12,13 @@ const Btn = styled.button`
 `;
 const StyledCard = styled.div`
   max-width: 250px;
-  /* height: 100px; */
   border: 1px solid #7227b0;
-  /* background: hsl(120, 100%, 93%); */
   color: #7227b0;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 2rem;
   margin: 1rem;
 `;
