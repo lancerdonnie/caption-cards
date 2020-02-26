@@ -3,7 +3,7 @@ import './App.css';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import Home from './pages/Home/Home';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import CaptionsByTag from './pages/CaptionsByTag/CaptionsByTag';
 import { getCaptions, getTags } from './redux/actions/capCardActions';
 
@@ -13,10 +13,12 @@ function App() {
   return (
     <Provider store={store}>
       <div className='App'>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/cbt' component={CaptionsByTag} />
-        </Switch>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/cbt' component={CaptionsByTag} />
+          </Switch>
+        </BrowserRouter>
       </div>
     </Provider>
   );

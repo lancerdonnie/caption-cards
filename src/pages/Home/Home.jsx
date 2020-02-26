@@ -6,7 +6,7 @@ import CardContainer from '../../components/CardContainer/CardContainer';
 import { getCaptionsWithManyTags } from '../../redux/actions/capCardActions';
 import AddCaptionWithTag from '../../components/AddCaptionWithTag/AddCaptionWithTag';
 import Button from '../../components/Button/Button';
-
+import Spinner from '../../components/Spinner/Spinner';
 const Home = props => {
   const [data, setData] = useState([]);
   const [tags, setTags] = useState([]);
@@ -53,8 +53,11 @@ const Home = props => {
     <div>
       <div className='head'>
         <h1>Caption Cards</h1>
+        <Link className='link' to='/cbt'>
+          Filter Caption
+        </Link>
       </div>
-      {/* <Link to='/cbt'>Filter Caption</Link> */}
+
       <div className='bar'>
         <input
           onChange={handleSearch}
@@ -64,18 +67,23 @@ const Home = props => {
         />
         <AddCaptionWithTag />
       </div>
-
-      <div className='buttons'>
-        {props.tags.map(tag => {
-          return (
-            <div key={tag.id} onClick={() => handleClick(tag.id)}>
-              <Button data={tag.tag} />
-            </div>
-          );
-        })}
-      </div>
-      <br />
-      <CardContainer search={search} captions={data} />
+      {props.loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <div className='buttons'>
+            {props.tags.map(tag => {
+              return (
+                <div key={tag.id} onClick={() => handleClick(tag.id)}>
+                  <Button data={tag.tag} />
+                </div>
+              );
+            })}
+          </div>
+          <br />
+          <CardContainer search={search} captions={data} />
+        </>
+      )}
     </div>
   );
 };
@@ -83,7 +91,8 @@ const mapStateToProps = state => {
   return {
     captions: state.capCard.captions,
     tags: state.capCard.tags,
-    captionsWithManyTags: state.capCard.captionsWithManyTags
+    captionsWithManyTags: state.capCard.captionsWithManyTags,
+    loading: state.capCard.loading
   };
 };
 const mapDispatchToProps = dispatch => {

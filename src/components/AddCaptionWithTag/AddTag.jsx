@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { saveTag } from '../../redux/actions/capCardActions';
+import Spinner from '../Spinner/Spinner';
 const AddTag = props => {
   const [tag, setTag] = useState('');
 
@@ -16,7 +17,9 @@ const AddTag = props => {
       <form onSubmit={handleSubmit} className='caption'>
         <p>Add tag</p>
         <input onChange={handleTagInput} value={tag} type='text' />
-        <button type='submit'>Add</button>
+        <button type='submit'>
+          {props.adding ? <Spinner small /> : 'Add'}
+        </button>
         <span onClick={props.handleShowAddTag}>
           {' '}
           <i className='fas fa-times' />
@@ -25,10 +28,14 @@ const AddTag = props => {
     </div>
   );
 };
-
+const mapStateToProps = state => {
+  return {
+    adding: state.capCard.adding
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     saveTag: tag => dispatch(saveTag(tag))
   };
 };
-export default connect(null, mapDispatchToProps)(AddTag);
+export default connect(mapStateToProps, mapDispatchToProps)(AddTag);

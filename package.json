@@ -9,13 +9,16 @@
     "axios": "^0.19.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-loader-spinner": "^3.1.5",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-spring": "^8.0.27",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "toasted-notes": "^3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -47,6 +50,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.18.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "react-test-renderer": "^16.12.0"
   }
 }

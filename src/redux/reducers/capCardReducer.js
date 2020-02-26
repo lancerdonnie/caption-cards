@@ -2,7 +2,9 @@ const initialState = {
   captions: [],
   tags: [],
   captionsUnderTag: null,
-  captionsWithManyTags: []
+  captionsWithManyTags: [],
+  loading: false,
+  adding: false
 };
 
 export default (state = initialState, action) => {
@@ -15,8 +17,10 @@ export default (state = initialState, action) => {
       return { ...state, captionsUnderTag: action.payload };
     case 'GET_CAPTIONS_WITH_MANY_TAGS':
       return { ...state, captionsWithManyTags: action.payload };
-    case 'CLEAR_CAPTIONS_UNDER_TAG':
-      return { ...state, captionsUnderTag: null };
+    case 'LOADING':
+      return { ...state, loading: action.payload };
+    case 'ADDING':
+      return { ...state, adding: action.payload };
     default:
       return state;
   }

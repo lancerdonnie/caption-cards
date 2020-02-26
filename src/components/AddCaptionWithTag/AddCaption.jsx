@@ -4,6 +4,7 @@ import {
   saveCaption,
   createCaptionWithTags
 } from '../../redux/actions/capCardActions';
+import Spinner from '../Spinner/Spinner';
 
 const AddCaption = props => {
   const [caption, setCaption] = useState('');
@@ -49,7 +50,11 @@ const AddCaption = props => {
           type='text'
           placeholder='type a caption'
         />
-        <button type='submit'>Add</button>
+        <button type='submit'>
+          {
+            props.adding?<Spinner small />:"Add"
+          }
+        </button>
         <span onClick={props.handleShowAddCaption}>
           <i className='fas fa-times' />
         </span>
@@ -84,7 +89,9 @@ const AddCaption = props => {
 };
 const mapStateToProps = state => {
   return {
-    tags: state.capCard.tags
+    tags: state.capCard.tags,
+    adding: state.capCard.adding,
+    
   };
 };
 const mapDispatchToProps = dispatch => {

@@ -4,12 +4,14 @@ import './CaptionsByTag.css';
 import { connect } from 'react-redux';
 import { getCaptionsUnderTag } from '../../redux/actions/capCardActions';
 import Card from '../../components/Card/Card';
+import Spinner from '../../components/Spinner/Spinner';
 const CaptionsByTag = props => {
   return (
     <div className='captionsbytag'>
-      <Link to='/'>All captions</Link>
-
       <div>
+        <p>
+          <Link to='/'>All captions</Link>
+        </p>
         {props.tags.map(tag => {
           return (
             <p
@@ -22,19 +24,24 @@ const CaptionsByTag = props => {
           );
         })}
       </div>
-      <div>
-        {props.captionsUnderTag &&
-          props.captionsUnderTag.captions.map(caption => {
-            return <Card caption={caption} />;
-          })}
-      </div>
+      {props.loading ? (
+        <Spinner />
+      ) : (
+        <div>
+          {props.captionsUnderTag &&
+            props.captionsUnderTag.captions.map(caption => {
+              return <Card caption={caption} />;
+            })}
+        </div>
+      )}
     </div>
   );
 };
 const mapStateToProps = state => {
   return {
     captionsUnderTag: state.capCard.captionsUnderTag,
-    tags: state.capCard.tags
+    tags: state.capCard.tags,
+    loading: state.capCard.loading
   };
 };
 const mapDispatchToProps = dispatch => {

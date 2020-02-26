@@ -4,8 +4,8 @@ import Select from '../Select/Select';
 const Card = props => {
   return (
     <StyledCard>
-      {props.caption.caption}
-      <Select captionId={props.caption.id} />
+      {props.caption}
+      <Select captionId={props.id} />
     </StyledCard>
   );
 };
