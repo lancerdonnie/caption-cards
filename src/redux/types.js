@@ -1,0 +1,6 @@
+export const GET_CAPTIONS = 'GET_CAPTIONS';
+export const GET_TAGS = 'GET_TAGS';
+export const GET_CAPTIONS_UNDER_TAG = 'GET_CAPTIONS_UNDER_TAG';
+export const GET_CAPTIONS_WITH_MANY_TAGS = 'GET_CAPTIONS_WITH_MANY_TAGS';
+export const LOADING = 'LOADING';
+export const ADDING = 'ADDING';

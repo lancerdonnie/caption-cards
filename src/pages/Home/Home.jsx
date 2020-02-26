@@ -1,26 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 import { connect } from 'react-redux';
-import CardContainer from '../../components/CardContainer/CardContainer';
 import { getCaptionsWithManyTags } from '../../redux/actions/capCardActions';
+import CardContainer from '../../components/CardContainer/CardContainer';
 import AddCaptionWithTag from '../../components/AddCaptionWithTag/AddCaptionWithTag';
 import Button from '../../components/Button/Button';
 import Spinner from '../../components/Spinner/Spinner';
+
 const Home = props => {
   const [data, setData] = useState([]);
   const [tags, setTags] = useState([]);
   const [search, setSearch] = useState('');
+
   useEffect(() => {
     setData(props.captions);
     setTags(props.tags);
   }, [props.captions, props.tags]);
+
   useEffect(() => {
     if (props.captionsWithManyTags.length > 0) {
       setData(props.captionsWithManyTags);
     }
   }, [props.captionsWithManyTags]);
+
   const handleClick = id => {
+    //filters tags to search for multiple tags
     const newData = tags.filter(tag => {
       return tag.id !== id;
     });
@@ -46,9 +51,11 @@ const Home = props => {
       props.getCaptionsWithManyTags([...getTags]);
     }
   };
+
   const handleSearch = e => {
     setSearch(e.target.value);
   };
+
   return (
     <div>
       <div className='head'>
@@ -67,10 +74,11 @@ const Home = props => {
         />
         <AddCaptionWithTag />
       </div>
+
       {props.loading ? (
         <Spinner />
       ) : (
-        <>
+        <Fragment>
           <div className='buttons'>
             {props.tags.map(tag => {
               return (
@@ -82,11 +90,12 @@ const Home = props => {
           </div>
           <br />
           <CardContainer search={search} captions={data} />
-        </>
+        </Fragment>
       )}
     </div>
   );
 };
+
 const mapStateToProps = state => {
   return {
     captions: state.capCard.captions,
@@ -95,9 +104,11 @@ const mapStateToProps = state => {
     loading: state.capCard.loading
   };
 };
+
 const mapDispatchToProps = dispatch => {
   return {
     getCaptionsWithManyTags: tags => dispatch(getCaptionsWithManyTags(tags))
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

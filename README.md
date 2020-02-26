@@ -33,6 +33,7 @@ Caption Card is a web application that which allows people to add captions and a
 1. Trying to get started with react testing
 2. I had to learn to use styled components
 3. Initially tried to fit everything in one page
+4. Shallow testing because of slow cpu
 
 ## Hosting
 
@@ -42,8 +43,8 @@ Caption Card is a web application that which allows people to add captions and a
 
 **HomePage**
 
-<img width="1212" alt="Screenshot 2020-02-20 at 22 18 57" src="https://user-images.githubusercontent.com/60140805/74979630-4a010b80-542f-11ea-94f6-95311d91a407.png">
+<img width="1212" alt="Home" src="https://res.cloudinary.com/dtyrfo0fx/image/upload/v1582734471/caption%20cards/caption.png">
 
 **Filter Page**
 
-<img width="1212" alt="Screenshot 2020-02-20 at 22 18 57" src="https://user-images.githubusercontent.com/60140805/74979630-4a010b80-542f-11ea-94f6-95311d91a407.png">
+<img width="1212" alt="Filter" src="https://res.cloudinary.com/dtyrfo0fx/image/upload/v1582734471/caption%20cards/Caption2.png">

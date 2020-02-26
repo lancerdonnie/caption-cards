@@ -16,6 +16,7 @@ const Btn = styled.button`
     background-color: ${props => (props.clr ? '' : '#ff5722')};
   }
 `;
+
 const StyledCard = styled.div`
   max-width: 250px;
   border: 1px solid #7227b0;
@@ -34,4 +35,5 @@ const StyledCard = styled.div`
     transform: scale(1.1);
   }
 `;
+
 export { Btn, StyledCard };

@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { Btn } from '../Styles.jsx';
+
+const propTypes={
+  data:PropTypes.string.isRequired,
+}
 
 const Button = ({ data }) => {
   const [clicked, setClicked] = useState(false);
@@ -15,5 +20,7 @@ const Button = ({ data }) => {
     </Btn>
   );
 };
+
+Button.propTypes=propTypes
 
 export default Button;

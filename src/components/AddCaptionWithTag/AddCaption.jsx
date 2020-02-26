@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   saveCaption,
@@ -6,12 +7,17 @@ import {
 } from '../../redux/actions/capCardActions';
 import Spinner from '../Spinner/Spinner';
 
+const propTypes = {
+  handleShowAddCaption: PropTypes.func.isRequired
+};
+
 const AddCaption = props => {
   const [caption, setCaption] = useState('');
   const [showTag, setShowTag] = useState(false);
   const [captionTags, setCaptiontags] = useState([]);
 
   const handleSubmit = e => {
+    //checks if user chose to add tags and submit
     e.preventDefault();
     if (caption.length < 1) return;
     if (showTag) {
@@ -24,9 +30,11 @@ const AddCaption = props => {
       props.saveCaption(caption);
     }
   };
+
   const handleCaptionInput = e => {
     setCaption(e.target.value);
   };
+
   const handleAddTags = e => {
     //check if tag is among checked tags
     const isTag = captionTags.find(tag => {
@@ -41,6 +49,7 @@ const AddCaption = props => {
       setCaptiontags(RemoveTag);
     }
   };
+
   return (
     <div className='captioncont'>
       <form onSubmit={handleSubmit} className='caption'>
@@ -66,6 +75,7 @@ const AddCaption = props => {
           />
           Add Tags
         </div>
+
         {showTag && (
           <div>
             {props.tags.map(tag => {
@@ -86,12 +96,14 @@ const AddCaption = props => {
     </div>
   );
 };
+
 const mapStateToProps = state => {
   return {
     tags: state.capCard.tags,
     adding: state.capCard.adding
   };
 };
+
 const mapDispatchToProps = dispatch => {
   return {
     saveCaption: caption => dispatch(saveCaption(caption)),
@@ -99,4 +111,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(createCaptionWithTags(caption, tags))
   };
 };
+
+AddCaption.propTypes = propTypes;
+
 export default connect(mapStateToProps, mapDispatchToProps)(AddCaption);

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 const Error = () => {
   const style = {
     height: '100vh',
@@ -10,11 +11,13 @@ const Error = () => {
     alignItems: 'center',
     color: '#7227b0'
   };
+
   const style2 = {
     marginTop: '20px',
     border: '2px solid #7227b0',
     padding: '1rem'
   };
+
   return (
     <div style={style}>
       <h2>Oops you are on the wrong page</h2>

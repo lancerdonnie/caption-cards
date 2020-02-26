@@ -1,11 +1,21 @@
-import Loader from 'react-loader-spinner';
 import React from 'react';
+import PropTypes from 'prop-types';
+import Loader from 'react-loader-spinner';
+
+const propTypes = {
+  small: PropTypes.bool
+};
+
+const defaultProps = {
+  small: false
+};
 
 const Spinner = ({ small }) => {
   const style = {
     display: 'flex',
     justifyContent: 'center'
   };
+
   return (
     <div style={style}>
       <Loader
@@ -17,5 +27,8 @@ const Spinner = ({ small }) => {
     </div>
   );
 };
+
+Spinner.propTypes = propTypes;
+Spinner.defaultProps = defaultProps;
 
 export default Spinner;

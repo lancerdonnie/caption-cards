@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import './Select.css';
 import { addTagToCaption } from '../../redux/actions/capCardActions';
+import './Select.css';
+
+const propTypes={
+  id:PropTypes.number.isRequired
+}
+
 const Select = props => {
   const [show, setShow] = useState(false);
   const [value, setValue] = useState({ tag: 'Add Tag' });
+
   const handleAdd = () => {
+    //sets the tag to be added to caption
     if (value.tag === 'Add Tag') return;
     props.addTagToCaption(props.captionId, value.id);
   };
+
   return (
     <div className='addselect'>
       <span className='dropdown'>
@@ -55,11 +64,14 @@ const mapStateToProps = state => {
     tags: state.capCard.tags
   };
 };
+
 const mapDispatchToProps = dispatch => {
   return {
     addTagToCaption: (captionId, tagId) =>
       dispatch(addTagToCaption(captionId, tagId))
   };
 };
+
+Select.propTypes=propTypes
 
 export default connect(mapStateToProps, mapDispatchToProps)(Select);
