@@ -1,12 +1,7 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addTagToCaption } from '../../redux/actions/capCardActions';
 import './Select.css';
-
-const propTypes={
-  id:PropTypes.number.isRequired
-}
 
 const Select = props => {
   const [show, setShow] = useState(false);
@@ -71,7 +66,5 @@ const mapDispatchToProps = dispatch => {
       dispatch(addTagToCaption(captionId, tagId))
   };
 };
-
-Select.propTypes=propTypes
 
 export default connect(mapStateToProps, mapDispatchToProps)(Select);

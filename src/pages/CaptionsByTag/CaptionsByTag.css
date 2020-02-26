@@ -26,3 +26,9 @@ p {
 p:first-child {
   border-bottom: 2px solid white;
 }
+
+@media only screen and (max-width: 425px) {
+  .captionsbytag > :first-child {
+    min-width: 120px;
+  }
+}
