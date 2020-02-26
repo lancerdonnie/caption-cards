@@ -1,5 +1,4 @@
 import axios from 'axios';
-import toast from '../../Utils/Toast';
 import Toast from '../../Utils/Toast';
 export const getCaptions = () => async dispatch => {
   dispatch({ type: 'LOADING', payload: true });

@@ -53,7 +53,7 @@ const Home = props => {
     <div>
       <div className='head'>
         <h1>Caption Cards</h1>
-        <Link className='link' to='/cbt'>
+        <Link className='link' to='/filter'>
           Filter Caption
         </Link>
       </div>

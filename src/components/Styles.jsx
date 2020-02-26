@@ -9,6 +9,12 @@ const Btn = styled.button`
   margin: 10px;
   outline: none;
   cursor: pointer;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+  transition-property: background-color;
+  &:hover {
+    background-color: ${props => (props.clr ? '' : '#ff5722')};
+  }
 `;
 const StyledCard = styled.div`
   max-width: 250px;
@@ -21,5 +27,11 @@ const StyledCard = styled.div`
   align-items: center;
   padding: 2rem;
   margin: 1rem;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  transition-property: transform;
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 export { Btn, StyledCard };

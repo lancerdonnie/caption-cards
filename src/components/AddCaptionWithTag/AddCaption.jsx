@@ -13,6 +13,7 @@ const AddCaption = props => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (caption.length < 1) return;
     if (showTag) {
       if (captionTags.length < 1) {
         props.saveCaption(caption);
@@ -51,9 +52,7 @@ const AddCaption = props => {
           placeholder='type a caption'
         />
         <button type='submit'>
-          {
-            props.adding?<Spinner small />:"Add"
-          }
+          {props.adding ? <Spinner small /> : 'Add'}
         </button>
         <span onClick={props.handleShowAddCaption}>
           <i className='fas fa-times' />
@@ -90,8 +89,7 @@ const AddCaption = props => {
 const mapStateToProps = state => {
   return {
     tags: state.capCard.tags,
-    adding: state.capCard.adding,
-    
+    adding: state.capCard.adding
   };
 };
 const mapDispatchToProps = dispatch => {

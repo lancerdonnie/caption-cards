@@ -10,6 +10,9 @@ a {
   text-decoration: none;
   color: unset;
 }
+a:active {
+  color: #ff5722;
+}
 body {
   font-family: Montserrat;
 }

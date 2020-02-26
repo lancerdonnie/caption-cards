@@ -4,6 +4,21 @@ h1 {
   font-size: 2.5rem;
   background-color: #7227b0;
   color: white;
+  animation-name: caption;
+  animation-duration: 2s;
+  animation-delay: 1s;
+  transform: scaleX(0);
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes caption {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 .head {
   background-color: #c7abde;
@@ -11,15 +26,32 @@ h1 {
   margin-bottom: 2rem;
   position: relative;
 }
+
 .link {
   position: absolute;
-  bottom: 0;
+  bottom: 300px;
   left: 50%;
   transform: translateX(-50%);
   color: #7227b0;
   border: 2px solid #7227b0;
   border-bottom: none;
   padding: 0.5rem 1rem;
+  animation-name: filter;
+  animation-duration: 2s;
+  animation-delay: 2s;
+  animation-timing-function: ease;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes filter {
+  0% {
+    bottom: 300px;
+  }
+  99% {
+  }
+  100% {
+    bottom: 0;
+  }
 }
 .bar {
   display: flex;
@@ -33,13 +65,28 @@ h1 {
   border: none;
   border-bottom: 1px solid #7227b0;
   outline: none;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  transition-property: border;
 }
+.bar > :nth-child(2):hover,
+.bar > :nth-child(3):hover {
+  border-color: #ff5722;
+  color: #ff5722;
+}
+.bar > :nth-child(1):focus {
+  border-color: #ff5722;
+}
+
 .bar > :nth-child(2) {
   order: 1;
   color: #7227b0;
   border: 2px solid #7227b0;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  transition-property: border-color color;
 }
 .bar > :nth-child(3) {
   order: 3;
@@ -47,6 +94,9 @@ h1 {
   border: 2px solid #7227b0;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  transition-duration: 0.5s;
+  transition-timing-function: linear;
+  transition-property: border-color color;
 }
 .buttons {
   display: flex;
