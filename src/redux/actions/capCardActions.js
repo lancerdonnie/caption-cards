@@ -96,7 +96,7 @@ export const saveCaption = caption => async dispatch => {
       caption
     });
     Toast('Added caption');
-    getCaptions();
+    dispatch(getCaptions());
   } catch (error) {
     console.log(error);
     Toast('Error adding caption');
@@ -111,7 +111,7 @@ export const saveTag = tag => async dispatch => {
       tag
     });
     Toast('Added tag');
-    getTags();
+    dispatch( getTags());
   } catch (error) {
     console.log(error);
     Toast('Error adding tag');
@@ -149,8 +149,8 @@ export const createCaptionWithTags = (caption, tags) => async dispatch => {
       }
     );
     Toast('Added caption with tags');
-    getCaptions();
-    getTags();
+    dispatch(getCaptions());
+    dispatch(getTags());
   } catch (error) {
     console.log(error);
     Toast('Error adding caption with tags');
