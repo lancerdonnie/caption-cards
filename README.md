@@ -1,6 +1,6 @@
 # Caption Card
 
-**A react test project made for Zicli **
+A react test project made for Zicli
 
 # About
 
@@ -37,7 +37,7 @@ Caption Card is a web application that which allows people to add captions and a
 
 ## Hosting
 
-[Caption Cards Webpage](https://documenter.getpostman.com/view/7988284/SzKTvysQ?version=latest)
+[Caption Cards Webpage](https://captioncardsbylancer.netlify.com/)
 
 ## Screenshots
 
