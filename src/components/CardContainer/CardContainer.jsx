@@ -11,10 +11,15 @@ const propTypes = {
 const CardContainer = props => {
   return (
     <div className='cardcontainer'>
-      {props.captions.map((caption, i) => {
-        if (caption.caption.includes(props.search))
-          return <Card key={i} caption={caption.caption} id={caption.id} />;
-      })}
+      {props.captions
+        .filter(caption => {
+          return caption.caption.includes(props.search);
+        })
+        .map(caption => {
+          return (
+            <Card key={caption.id} caption={caption.caption} id={caption.id} />
+          );
+        })}
     </div>
   );
 };

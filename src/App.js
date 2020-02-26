@@ -8,10 +8,10 @@ import CaptionsByTag from './pages/CaptionsByTag/CaptionsByTag';
 import Error from './pages/Error/Error';
 import Home from './pages/Home/Home';
 
-function App() {
-  store.dispatch(getCaptions());
-  store.dispatch(getTags());
+store.dispatch(getCaptions());
+store.dispatch(getTags());
 
+function App() {
   return (
     <Provider store={store}>
       <div className='App'>

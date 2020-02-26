@@ -21,6 +21,7 @@ const StyledCard = styled.div`
   max-width: 250px;
   border: 1px solid #7227b0;
   color: #7227b0;
+  background-color: white;
   border-radius: 5px;
   display: flex;
   flex-direction: column;

@@ -26,6 +26,7 @@
   background-color: white;
   cursor: pointer;
 }
+
 .select > div:hover {
   background-color: #7227b0;
   color: white;
@@ -33,7 +34,6 @@
 }
 
 .divider {
-  /* display: inline-block; */
   margin: 0 7px;
   border-left: 2px solid white;
 }
