@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 import { connect } from 'react-redux';
@@ -69,35 +69,35 @@ const Home = props => {
           Filter Caption
         </Link>
       </div>
-
-      <div className='bar'>
-        <input
-          onChange={handleSearch}
-          value={search}
-          type='text'
-          placeholder='Search'
-        />
-        <AddCaptionWithTag />
-      </div>
-      <div className='showhide' onClick={handleShowTags}>
-        {show ? 'hide tags' : 'show tags'}
-      </div>
       {props.loading ? (
         <Spinner />
       ) : (
-        <Fragment>
-          <div className={`buttons ${show ? 'show' : 'hide'}`}>
-            {props.tags.map(tag => {
-              return (
-                <div key={tag.id} onClick={() => handleClick(tag.id)}>
-                  <Button data={tag.tag} />
-                </div>
-              );
-            })}
+        <div>
+          <div className='blue'>
+            <div className='bar'>
+              <input
+                onChange={handleSearch}
+                value={search}
+                type='text'
+                placeholder='Search'
+              />
+              <AddCaptionWithTag />
+            </div>
+            <div className='showhide' onClick={handleShowTags}>
+              {show ? 'hide tags' : 'show tags'}
+            </div>
+            <div className={`buttons ${show ? 'show' : 'hide'}`}>
+              {props.tags.map(tag => {
+                return (
+                  <div key={tag.id} onClick={() => handleClick(tag.id)}>
+                    <Button data={tag.tag} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
-          <br />
           <CardContainer search={search} captions={data} />
-        </Fragment>
+        </div>
       )}
     </div>
   );
