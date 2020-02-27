@@ -87,13 +87,20 @@ const Home = props => {
               {show ? 'hide tags' : 'show tags'}
             </div>
             <div className={`buttons ${show ? 'show' : 'hide'}`}>
-              {props.tags.map(tag => {
-                return (
-                  <div key={tag.id} onClick={() => handleClick(tag.id)}>
-                    <Button data={tag.tag} />
-                  </div>
-                );
-              })}
+              {props.tags
+                .sort((a, b) => {
+                  //sort alphabetically
+                  var tagA = a.tag.toLowerCase();
+                  var tagB = b.tag.toLowerCase();
+                  return tagA < tagB ? -1 : tagA > tagB ? 1 : 0;
+                })
+                .map(tag => {
+                  return (
+                    <div key={tag.id} onClick={() => handleClick(tag.id)}>
+                      <Button data={tag.tag} />
+                    </div>
+                  );
+                })}
             </div>
           </div>
           <CardContainer search={search} captions={data} />

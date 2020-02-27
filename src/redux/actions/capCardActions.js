@@ -33,11 +33,18 @@ export const getTags = () => async dispatch => {
     ).data;
     const temp_tags = res.data.tags;
     //add tag ids to tags. tag ids are sequential but not provided by api
-    const tags = temp_tags.map((tag, index) => {
+    const temp_tags2 = temp_tags.map((tag, index) => {
       return {
         id: index + 1,
         tag
       };
+    });
+    //same name tags appear more than once so we exclude repeated tag names but maintain the ids
+    const duplicate = [];
+    const tags = temp_tags2.filter(tag => {
+      if (duplicate.includes(tag.tag)) return false;
+      duplicate.push(tag.tag);
+      return true;
     });
     dispatch({ type: GET_TAGS, payload: tags });
   } catch (error) {
@@ -111,7 +118,7 @@ export const saveTag = tag => async dispatch => {
       tag
     });
     Toast('Added tag');
-    dispatch( getTags());
+    dispatch(getTags());
   } catch (error) {
     console.log(error);
     Toast('Error adding tag');
@@ -155,6 +162,6 @@ export const createCaptionWithTags = (caption, tags) => async dispatch => {
     console.log(error);
     Toast('Error adding caption with tags');
   }
-  
+
   dispatch({ type: ADDING, payload: false });
 };

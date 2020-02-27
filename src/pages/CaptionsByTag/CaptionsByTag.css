@@ -19,12 +19,15 @@
   justify-content: center;
 }
 
+input {
+  padding: 0.5rem;
+  border: none;
+  outline: none;
+}
+
 p {
   cursor: pointer;
   padding: 0.8rem 0;
-}
-p:first-child {
-  border-bottom: 2px solid white;
 }
 
 @media only screen and (max-width: 425px) {
