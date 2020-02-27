@@ -12,6 +12,7 @@ const Home = props => {
   const [data, setData] = useState([]);
   const [tags, setTags] = useState([]);
   const [search, setSearch] = useState('');
+  const [show, setShow] = useState(true);
 
   useEffect(() => {
     setData(props.captions);
@@ -56,6 +57,10 @@ const Home = props => {
     setSearch(e.target.value);
   };
 
+  const handleShowTags = () => {
+    setShow(!show);
+  };
+
   return (
     <div>
       <div className='head'>
@@ -74,12 +79,14 @@ const Home = props => {
         />
         <AddCaptionWithTag />
       </div>
-
+      <div className='showhide' onClick={handleShowTags}>
+        {show ? 'hide tags' : 'show tags'}
+      </div>
       {props.loading ? (
         <Spinner />
       ) : (
         <Fragment>
-          <div className='buttons'>
+          <div className={`buttons ${show ? 'show' : 'hide'}`}>
             {props.tags.map(tag => {
               return (
                 <div key={tag.id} onClick={() => handleClick(tag.id)}>
