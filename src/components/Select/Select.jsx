@@ -20,10 +20,6 @@ const Select = props => {
           onClick={() => {
             setShow(!show);
           }}
-          tabIndex='0'
-          //tab index above -1 gives element focus and blur attrs
-          //using this to hide dropdownlist on click outside element
-          onBlur={() => setShow(!show)}
         >
           {value.tag}
         </span>
