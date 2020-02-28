@@ -27,7 +27,7 @@ const CaptionsByTag = props => {
         <input onChange={handleSearchChange} value={search} type='text' />
         {props.tags
           .filter(tag => {
-            return tag.tag.includes(search);
+            return tag.tag.toLowerCase().includes(search.toLowerCase());
           })
           .sort((a, b) => {
             //sort alphabetically
@@ -56,8 +56,8 @@ const CaptionsByTag = props => {
       ) : (
         <div>
           {props.captionsUnderTag &&
-            props.captionsUnderTag.captions.map(caption => {
-              return <Card caption={caption} />;
+            props.captionsUnderTag.captions.map((caption, i) => {
+              return <Card key={i} caption={caption} />;
             })}
         </div>
       )}

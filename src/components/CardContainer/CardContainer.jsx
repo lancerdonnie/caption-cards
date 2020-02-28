@@ -13,7 +13,9 @@ const CardContainer = props => {
     <div className='cardcontainer'>
       {props.captions
         .filter(caption => {
-          return caption.caption.includes(props.search);
+          return caption.caption
+            .toLowerCase()
+            .includes(props.search.toLowerCase());
         })
         .map(caption => {
           return (

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import './Select.css';
 import { connect } from 'react-redux';
 import { addTagToCaption } from '../../redux/actions/capCardActions';
-import './Select.css';
 
 const Select = props => {
   const [show, setShow] = useState(false);
@@ -20,6 +20,10 @@ const Select = props => {
           onClick={() => {
             setShow(!show);
           }}
+          tabIndex='0'
+          //tab index above -1 gives element focus and blur attrs
+          //using this to hide dropdownlist on click outside element
+          onBlur={() => setShow(!show)}
         >
           {value.tag}
         </span>
